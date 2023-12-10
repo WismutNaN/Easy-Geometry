@@ -1,9 +1,9 @@
 # Easy Geometry
 Набор скриптов, используемый компанией Scientia для обработки данных геометрии
 
-https://scientia.ru
+[Сайт](https://scientia.ru)
 
-https://scientia_ru.t.me/
+[Сайт](https://scientia_ru.t.me/)
 
 ## blender_parser.py
 После выполнения измерений на модели инструментом измерить, обязательно сохраните файл `.blend`
