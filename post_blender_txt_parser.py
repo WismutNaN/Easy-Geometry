@@ -6,8 +6,6 @@ class Model:
     def __init__(self, filename):
         self.filename = Path(filename)
         self.faces, self.edges = [], []
-        self.faces_into = 'Faces:\n{}\t{}\t{}\t{}\t{}\t{}\t{}'.format('x','y', 'z', 'az', 'dip', 'r_az', 'area')
-        self.edges_into = 'Edges:\n{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}'.format('x','y', 'z', 'az', 'dip', 'e_az', 'e_dip', 'r_az', 'len')
 
     def run(self, az_real:float=0, az_model:float=0):
         with open(self.filename, encoding='utf-8') as txt:
@@ -62,7 +60,8 @@ class Model:
             print(i)
 
     def edges_result_to_csv(self, delimiter=',', suffix = '_result'):
-        filename = Path(self.filename.parent, f'{self.filename.stem}{suffix}_E.csv')
+        part_of_name = str(self.filename.stem).replace('_source', '')
+        filename = Path(self.filename.parent, f'{part_of_name}{suffix}_E.csv')
         with open(filename, 'w', newline='', encoding='utf-8') as file:
             writer = csv.writer(file, delimiter=delimiter)
             writer.writerow(['x', 'y', 'z', 'azimuth', 'dip', 'edge_azimuth', 'edge_dip', 'rotated_azimuth', 'length'])
@@ -76,7 +75,8 @@ class Model:
         print('Edges in csv:', filename)
 
     def faces_result_to_csv(self, delimiter=',', suffix = '_result'):
-        filename = Path(self.filename.parent, f'{self.filename.stem}{suffix}_F.csv')
+        part_of_name = str(self.filename.stem).replace('_source', '')
+        filename = Path(self.filename.parent, f'{part_of_name}{suffix}_F.csv')
         with open(filename, 'w', newline='', encoding='utf-8') as file:
             writer = csv.writer(file, delimiter=delimiter)
             writer.writerow(['x', 'y', 'z', 'azimuth', 'dip', 'rotated_azimuth', 'blender_degree','area'])
@@ -92,7 +92,7 @@ class Model:
 
 
 if __name__ == '__main__':
-    folder_path = Path(r'path/to/dxf') # Вставить путь к папке с координатами
+    folder_path = Path(r'path/to/folder') # Вставить путь к папке с координатами
     paths = folder_path.glob('*_source.txt')
     for path in paths:
         a = Model(path)
