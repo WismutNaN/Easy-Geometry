@@ -1,6 +1,8 @@
 # Easy Geometry
 Набор скриптов, используемый компанией Scientia для обработки данных геометрии
+
 https://scientia.ru
+
 https://scientia_ru.t.me/
 
 ## blender_parser.py
